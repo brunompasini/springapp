@@ -60,4 +60,5 @@ public class WindowDto {
     public void setRoomId(Long roomId) {
         this.roomId = roomId;
     }
+
 }

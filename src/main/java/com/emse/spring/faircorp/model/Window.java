@@ -1,4 +1,7 @@
 package com.emse.spring.faircorp.model;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 //1
@@ -20,6 +23,7 @@ public class Window {
     private WindowStatus windowStatus;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Room room;
 
     public Window(){
@@ -40,6 +44,9 @@ public class Window {
     }
 
     public Room getRoom() {return this.room;}
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
     public String getName(){
         return name;

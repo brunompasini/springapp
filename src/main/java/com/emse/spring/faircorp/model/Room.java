@@ -1,6 +1,11 @@
 package com.emse.spring.faircorp.model;
+import org.hibernate.annotations.ManyToAny;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "ROOM")
@@ -27,16 +32,27 @@ a list of windows. You have to define a bidirectional association between Room a
 
  */
     @OneToMany(mappedBy = "room")
-    private List<Heater> heaters;
+    private Set<Heater> heaters;
 
     @OneToMany(mappedBy = "room")
-    private List<Window> windows;
+    private Set<Window> windows;
+
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Building building;
 
     public Room(){}
-
-    public Room(Integer floor, String name){
+    public Room(Integer floor, String name, Building building) {
         this.floor = floor;
         this.name = name;
+        this.building = building;
+    }
+    public Room(Integer floor, String name, Building building, Double currentTemperature, Double targetTemperature){
+        this.floor = floor;
+        this.name = name;
+        this.building = building;
+        this.currentTemperature = currentTemperature;
+        this.targetTemperature = targetTemperature;
     }
 
     public Long getId() {
@@ -47,7 +63,11 @@ a list of windows. You have to define a bidirectional association between Room a
         this.id = id;
     }
 
-    public List<Window> getWindows() { return windows;}
+    public Set<Window> getWindows() { return windows;}
+
+    public Set<Heater> getHeaters() {
+        return heaters;
+    }
 
     public Integer getFloor() {
         return floor;
@@ -55,6 +75,14 @@ a list of windows. You have to define a bidirectional association between Room a
 
     public void setFloor(Integer floor) {
         this.floor = floor;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 
     public String getName() {

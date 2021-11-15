@@ -1,4 +1,7 @@
 package com.emse.spring.faircorp.model;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 
@@ -19,15 +22,17 @@ public class Heater {
     //@Column(nullable = false)
     //private Long room;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Room room;
 
     public Heater(){}
 
-    public Heater(String name, Room room, Status status){
+    public Heater(String name, Status status, Room room){
         this.name = name;
         this.room = room;
         this.status = status;
@@ -63,5 +68,13 @@ public class Heater {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }
