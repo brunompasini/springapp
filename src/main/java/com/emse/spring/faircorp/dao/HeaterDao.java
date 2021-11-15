@@ -11,7 +11,6 @@ import java.nio.channels.FileChannel;
 
 public interface HeaterDao extends JpaRepository<Heater, Long>, HeaterDaoCustom{
 
-    @Modifying
     @Query("select h from Heater h where h.name =: name")
     Heater findByName(@Param("name") String name);
 

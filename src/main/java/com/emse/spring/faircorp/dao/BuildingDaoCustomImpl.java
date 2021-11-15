@@ -15,13 +15,6 @@ public class BuildingDaoCustomImpl implements BuildingDaoCustom {
     private EntityManager em;
 
 
-    //@Override
-    //public Building findById(Long id) {
-    //    String jpql = "select b from Building b where b.id=:id";
-    //    return em.createQuery(jpql, Building.class).setParameter("id",id).getSingleResult();
-    //}
-
-
     @Override
     public List<Room> getAllRoomsByBuildingId(Long id) {
         String jpql = "select a from Room a where a.building.id=:id";
