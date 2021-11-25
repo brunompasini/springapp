@@ -14,4 +14,8 @@ public interface HeaterDao extends JpaRepository<Heater, Long>, HeaterDaoCustom{
     @Query("select h from Heater h where h.name =: name")
     Heater findByName(@Param("name") String name);
 
+    @Modifying
+    @Query("delete from Heater h where h.id = ?1")
+    void deleteHeater(Long id);
+
 }

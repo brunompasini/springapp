@@ -6,7 +6,10 @@ import java.util.List;
 
 public interface BuildingDaoCustom {
 
-    List<Room> getAllRoomsByBuildingId(Long id);
+    List<Room> getAllRoomsByBuilding(Long id);
+
+    List<Heater> getAllHeatersByBuilding(Long id);
+    List<Window> getAllWindowsByBuilding(Long id);
 
 
 }

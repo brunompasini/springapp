@@ -23,7 +23,7 @@ public class RoomDto {
         this.currentTemperature = room.getCurrentTemperature();
         this.targetTemperature = room.getTargetTemperature();
 
-        this.buildingId = room.getBuilding().getId();
+        this.buildingId = (room.getBuilding()==null)?null:room.getBuilding().getId();
     }
 
     public Long getId() {

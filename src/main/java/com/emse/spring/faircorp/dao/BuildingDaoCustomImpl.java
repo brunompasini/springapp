@@ -16,9 +16,25 @@ public class BuildingDaoCustomImpl implements BuildingDaoCustom {
 
 
     @Override
-    public List<Room> getAllRoomsByBuildingId(Long id) {
+    public List<Room> getAllRoomsByBuilding(Long id) {
         String jpql = "select a from Room a where a.building.id=:id";
-        return em.createQuery(jpql, Room.class).setParameter("id", id).getResultList();
+        return em.createQuery(jpql, Room.class)
+                .setParameter("id", id)
+                .getResultList();
     }
 
+    @Override
+    public List<Heater> getAllHeatersByBuilding(Long id) {
+        String jpql = "select h from Heater h where h.building.id=:id";
+        return em.createQuery(jpql, Heater.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
+
+    @Override
+    public List<Window> getAllWindowsByBuilding(Long id) {
+        String jpql = "select w from Window w where w.building.id=:id";
+        return em.createQuery(jpql, Window.class)
+                .setParameter("id", id)
+                .getResultList();    }
 }

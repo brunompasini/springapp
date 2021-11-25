@@ -26,4 +26,5 @@ public class HeaterDaoCustomImpl implements HeaterDaoCustom{
         String jpql = "select h from Heater where h.room.building.id=:id";
         return em.createQuery(jpql, Heater.class).setParameter("id",id).getResultList();
     }
+
 }
